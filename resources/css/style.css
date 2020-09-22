@@ -58,3 +58,7 @@ p{
     -ms-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
 }
+button:hover {
+    background-color: rgb(21, 39, 21);
+    color: rgb(180, 235, 180);
+}
