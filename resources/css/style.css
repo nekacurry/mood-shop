@@ -29,3 +29,32 @@ body{
     font-size: 1.5em;
     color: rgb(21, 39, 21);
 }
+.items {
+    display: grid;
+    grid-template-columns: repeat(4, 120px);
+    grid-column-gap: 200px;
+    margin-left: 100px;
+    margin-top: 50px;
+}
+.item {
+    border: solid 1px;
+    width: 300px;
+    margin-top: 30px;
+}
+p{
+    text-align: center;
+    margin: 5%;
+}
+.buttons {
+    background-color: rgb(180, 235, 180);
+    color: rgb(21, 39, 21);
+    border-style: hidden;
+    font-family: "Open Sans";
+    border-radius: 1em;
+    padding: 0.5em;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}

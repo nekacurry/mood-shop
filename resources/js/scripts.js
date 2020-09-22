@@ -28,6 +28,7 @@ for (let i=0; i<data.length; ++i) {
     button.dataset.price = data[i].price
     button.innerHTML = "Add to Cart"
     newDiv.appendChild(button)
+    button.className = 'buttons'
 
     itemsContainer.appendChild(newDiv)
 }
