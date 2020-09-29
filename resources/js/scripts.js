@@ -32,3 +32,22 @@ for (let i=0; i<data.length; ++i) {
 
     itemsContainer.appendChild(newDiv)
 }
+
+const cart = [ ]
+
+function addItem(name, price) {
+    const item = { name: name, price: price, qty: 1 }
+    cart.push(item)
+}
+
+function showItems() {
+    console.log(`You have ${cart.length} items in your cart!`)
+}
+
+addItem("Happy", 0.99)
+addItem("Angry", 2.49)
+addItem("Curiousity", 1.99)
+addItem("Tears", 5.99)
+
+showItems()
+
