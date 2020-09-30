@@ -9,7 +9,7 @@ body{
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    background-color: rgb(180, 235, 180);
+    background-color: #b4ebb4;
 }
 .page-header ul{
     display: flex;
@@ -27,7 +27,7 @@ body{
     padding-left: 1em;
     font-family: "Josefin Sans";
     font-size: 1.5em;
-    color: rgb(21, 39, 21);
+    color: #152715;
 }
 .items {
     display: grid;
@@ -61,4 +61,70 @@ p{
 button:hover {
     background-color: rgb(21, 39, 21);
     color: rgb(180, 235, 180);
+}
+
+#break {
+    border-color: rgba(0, 128, 128, 0.247);
+    border-bottom-style: solid;
+    margin: 10% 10%;
+    border-width: 1px ;
+}
+
+footer {
+    margin-top: 10%;
+    margin-bottom: 25%;
+    text-align: center;
+    background-color: rgba(180, 235, 180, 0.377);
+    padding: 2%;
+}
+
+h1 {
+    color: #2d522d;
+    border-style: double;
+    border-color: #b4ebb4;
+    padding: 1em 0;
+    background-color: rgba(255, 255, 255, 0.822);
+}
+
+#cart ul {
+    list-style-type: none;
+    text-align: left;
+    display: grid;
+    grid-template-columns: repeat(2, 50%);
+    margin-left: 10%;
+    margin-right: 10%;
+    background-color: #15271510;
+
+}
+#cart li:nth-child(even) {
+    text-align: right;
+
+}
+
+
+#cart li {
+    margin: 3em;
+
+}
+
+ul button {
+    background-color: rgb(180, 235, 180);
+    color: rgb(21, 39, 21);
+    border-style: hidden;
+    font-family: "Open Sans";
+    border-radius: 1em;
+    padding: 0.5em;
+}
+
+ul input {
+    border-style: hidden;
+    line-height: 200%;
+}
+
+.emph, .item-emph {
+    color: blueviolet;
+}
+
+.item-emph{
+    font-style: italic;
 }

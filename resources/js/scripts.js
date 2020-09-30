@@ -38,7 +38,18 @@ for (let i=0; i<data.length; ++i) {
 
     itemsContainer.appendChild(newDiv)
 }
+// ----------------------------------------->
+// Handle Change events on update input
+itemList.onchange = function(e) {
+    if (e.target && e.target.classList.contains('update')) {
+        const name = e.target.dataset.name
+        const qty = parseInt(e.target.value)
+        updateCart(name, qty)
+    }
+}
 
+// ----------------------------------------->
+// Buttons
 const all_items_button = Array.from(document.querySelectorAll("button"))
 console.log(all_items_button)
 
@@ -47,16 +58,32 @@ all_items_button.forEach(elt => elt.addEventListener('click', () => {
     showItems()
   }))
 
-const cart = []
+itemList.onclick = function(e) {
+    if (e.target && e.target.classList.contains('remove')) {
+        const name = e.target.dataset.name
+        removeItem(name)
+    }
+    else if (e.target && e.target.classList.contains('add-1')) {
+        const name = e.target.dataset.name
+        addItem(name)
+    }
+    else if (e.target && e.target.classList.contains('minus-1')) {
+        const name = e.target.dataset.name
+        removeItem(name, 1)
+    }
+}
 
+const cart = []
 // ----------------------------------------------->
 // Add item
 function addItem(name, price) {
     for (let i = 0; i < cart.length; i += 1) {
         if (cart[i].name === name) {
             cart[i].qty += 1
+            showItems()
             return
         }
+        
 
     }
 
@@ -64,30 +91,34 @@ function addItem(name, price) {
     cart.push(item)
 }
 
-// <-----------------------------------------------
-
 // ----------------------------------------------->
 // Show items
 function showItems() {
     const qty = getQty()
-    cartQty.innerHTML = `You have ${qty} items in your cart!`
+    cartQty.innerHTML = `You have <span class="emph">${qty}</span> 
+    item(s) in your cart!`
 
     let itemStr = ''
     for (let i = 0; i < cart.length; i += 1) {
         const { name, price, qty } = cart[i]
 
         itemStr += `<li>
-        ${name} 
-        $${price} x ${qty} =
-        ${qty * price} 
+        <span class="item-emph">${name}</span>
+        <br>$${price} x ${qty} =
+        $${qty * price} 
+        </li>
+        <li>
+        <button class="remove" data-name="${name}">Remove</button>
+        <button class="minus-1" data-name="${name}"> - </button>
+        <button class="add-1" data-name="${name}"> + </button>
+        <input class="update" type="number" data-name="${name}">
         </li> `
     }
     itemList.innerHTML = itemStr
 
-    cartTotal.innerHTML = `Total in cart: $${getTotal()}`
+    cartTotal.innerHTML = `Total in cart: 
+    <span class="emph">$${getTotal()}</span>`
 }
-
-// <-----------------------------------------------
 
 // ----------------------------------------------->
 // Get qty
@@ -98,8 +129,6 @@ function getQty() {
     }
     return qty
 }
-
-// <-----------------------------------------------
 
 // ----------------------------------------------->
 // Get total
@@ -113,8 +142,6 @@ function getTotal() {
 
 }
 
-// <-----------------------------------------------
-
 // ----------------------------------------------->
 // Remove item
 function removeItem(name, qty = 0) {
@@ -126,26 +153,27 @@ function removeItem(name, qty = 0) {
             if (cart[i].qty < 1 || qty === 0) {
                 cart.splice(i, 1)
             }
+            showItems()
             return
         }
     }
 }
 
-// <-----------------------------------------------
-
-addItem('Happy', 0.99)
-addItem('Angry', 2.49)
-addItem('Curiousity', 1.99)
-addItem('Tears', 5.99)
-addItem('Happy', 0.99)
-addItem('Happy', 0.99)
-addItem('Curiousity', 1.99)
-addItem('Angry', 2.49)
-
-showItems()
-
-removeItem('Happy', 1)
-removeItem('Tears')
+// ------------------------------------------------>
+// Update Cart Function
+function updateCart(name, qty) {
+    for (let i = 0; i < cart.length; i += 1) {
+        if (cart[i].name === name) {
+            if (qty < 1) {
+                removeItem(name)
+                return
+            }
+            cart[i].qty = qty
+            showItems()
+            return
+        }
+    }
+}
 
 showItems()
 
